@@ -1,0 +1,7 @@
+{
+  "name": "Daily Expense & Wealth Tracker",
+  "description": "Smart daily expense tracker with automated SMS parsing scheduler, monthly budgets, spending trend charts, and investment & net worth management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
