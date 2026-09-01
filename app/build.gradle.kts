@@ -63,6 +63,24 @@ android {
   }
 }
 
+tasks.register<Copy>("copyApkToBuildOutputs") {
+  dependsOn("packageDebug")
+  val versionName = "1.0"
+  from(layout.buildDirectory.dir("outputs/apk/debug")) {
+    include("app-debug.apk")
+    rename { "app-v${versionName}-debug.apk" }
+  }
+  from(layout.buildDirectory.dir("outputs/apk/debug")) {
+    include("app-debug.apk")
+    include("output-metadata.json")
+  }
+  into(rootProject.layout.projectDirectory.dir(".build-outputs"))
+}
+
+tasks.matching { it.name == "assembleDebug" }.configureEach {
+  finalizedBy("copyApkToBuildOutputs")
+}
+
 // Configure the Secrets Gradle Plugin to use .env and .env.example files
 // to match the convention used in Web projects.
 secrets {
